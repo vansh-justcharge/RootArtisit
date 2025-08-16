@@ -38,12 +38,12 @@ const Home = () => {
       <main className="pt-[160px] sm:pt-[200px] md:pt-[280px] space-y-10 sm:space-y-12 md:space-y-16">
         
         {/* Row 1 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-11 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-11 gap-4 items-end">
           <div className="lg:col-span-3">
             <img
               src="https://rootartists.com/wp-content/uploads/2024/05/1-2.jpg"
               alt="Caption 1"
-              className="w-full h-[200px] sm:h-[300px] md:h-[500px] object-cover"
+              className="w-full h-[260px] sm:h-[300px] md:h-[500px] object-cover"
             />
             <p className="mt-2 text-xs sm:text-sm text-start">Caption 1</p>
           </div>
@@ -55,25 +55,25 @@ const Home = () => {
               muted
               loop
               playsInline
-              className="w-full h-[200px] sm:h-[300px] md:h-[500px] object-cover"
+              className="w-full h-[300px] sm:h-[300px] md:h-[500px] object-cover"
             />
             <p className="mt-2 text-xs sm:text-sm text-start">Caption 2</p>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 items-end">
             <img
               src="https://rootartists.com/wp-content/uploads/2024/12/Pulkit-Mishra-91-scaled.jpg"
               alt="Caption 3"
-              className="w-full h-[200px] sm:h-[300px] md:h-[500px] object-cover"
+              className="w-full h-[300px] sm:h-[300px] md:h-[500px] object-cover"
             />
             <p className="mt-2 text-xs sm:text-sm text-start">Caption 3</p>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 items-end">
             <img
               src="https://rootartists.com/wp-content/uploads/2024/12/%C2%A9Pulkit-Mishra_Mindyc-scaled.jpg"
               alt="Caption 4"
-              className="w-full h-[200px] sm:h-[300px] md:h-[500px] object-cover"
+              className="w-full h-[250px] sm:h-[300px] md:h-[500px] object-cover"
             />
             <p className="mt-2 text-xs sm:text-sm text-start">Caption 4</p>
           </div>
@@ -100,7 +100,7 @@ const Home = () => {
         </div>
 
         {/* Row 3 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-12 gap-4 items-end">
           <div className="lg:col-span-2">
             <img
               src="https://rootartists.com/wp-content/uploads/2023/12/3-2.png"
@@ -114,7 +114,7 @@ const Home = () => {
             <img
               src="https://rootartists.com/wp-content/uploads/2023/12/c6ce38159442717.png"
               alt="Creative direction : Akshay Pradeep"
-              className="w-full h-[200px] sm:h-[250px] lg:h-[300px] object-cover"
+              className="w-full h-[150px] sm:h-[250px] lg:h-[300px] object-cover"
             />
             <p className="mt-2 text-xs text-start sm:text-sm">Creative direction : Akshay Pradeep</p>
           </div>
@@ -144,12 +144,12 @@ const Home = () => {
         </div>
 
         {/* Row 4 */}
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 sm:h-[350px] md:h-[450px]">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:h-[350px] md:h-[450px]">
           <div className="sm:col-span-1 flex items-end">
             <img
               src="https://rootartists.com/wp-content/uploads/2024/12/%C2%A9Pulkit-Mishra_Portfolio-4-2048x1639.jpg"
               alt="Caption 1"
-              className="w-full h-[200px] sm:h-[220px] object-cover"
+              className="w-full h-[150px] sm:h-[220px] object-cover"
             />
           </div>
           <div className="sm:col-span-1">
@@ -159,7 +159,7 @@ const Home = () => {
               className="w-full h-full min-h-[250px] sm:min-h-[350px] max-h-[450px] object-cover"
             />
           </div>
-          <div className="sm:col-span-2">
+          <div className="col-span-2">
             <img
               src="https://rootartists.com/wp-content/uploads/2024/05/C4A9921-copy-1-1024x683.jpg"
               alt="Caption 3"
@@ -174,7 +174,7 @@ const Home = () => {
             <img
               src="https://rootartists.com/wp-content/uploads/2024/12/Pulkit-X-Root_Test_07.120182-scaled.jpg"
               alt="Caption 1"
-              className="w-full h-[250px] sm:h-[400px] md:h-[500px] object-cover"
+              className="w-full h-[400px] sm:h-[400px] md:h-[500px] object-cover"
             />
             <p className="mt-2 text-xs sm:text-sm text-start ml-6">Caption 1</p>
           </div>
@@ -202,7 +202,7 @@ const Home = () => {
             <img
               src="https://rootartists.com/wp-content/uploads/2024/12/DSC4020-scaled.jpg"
               alt="Caption 2"
-              className="w-full h-[250px] sm:h-[400px] md:h-[450px] object-cover"
+              className="w-full h-[400px] sm:h-[400px] md:h-[450px] object-cover"
             />
             <p className="mt-2 text-xs sm:text-sm text-start">Caption 2</p>
           </div>
@@ -230,7 +230,7 @@ const Home = () => {
             <img
               src="https://rootartists.com/wp-content/uploads/2024/12/DSF5416_%C2%A9Pulkit-Mishra_-scaled.jpg"
               alt="Caption 3"
-              className="w-full h-[250px] sm:h-[350px] md:h-[400px] object-cover"
+              className="w-full h-[400px] sm:h-[350px] md:h-[400px] object-cover"
             />
             <p className="mt-2 text-xs sm:text-sm text-start">Caption 3</p>
           </div>
@@ -238,7 +238,7 @@ const Home = () => {
             <img
               src="https://rootartists.com/wp-content/uploads/2024/12/%C2%A9Pulkit-Mishra_1.jpeg"
               alt="Caption 3"
-              className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
+              className="w-full h-[400px] sm:h-[400px] md:h-[500px] object-cover"
             />
             <p className="mt-2 text-xs sm:text-sm text-start">Caption 3</p>
           </div>
