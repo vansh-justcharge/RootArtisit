@@ -131,13 +131,13 @@ const Home = () => {
           <div className="lg:col-span-5">
             <div className="w-full h-[200px] sm:h-[250px] lg:h-[300px] overflow-hidden">
               <iframe
-                src="https://www.youtube.com/embed/aoMHK5JChTw"
+                src="https://www.youtube.com/embed/aoMHK5JChTw?autoplay=1&loop=1&playlist=aoMHK5JChTw&controls=0&mute=1"
                 title="Film: Raunvijay Paul"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full"
-              ></iframe>
+              />
             </div>
             <p className="mt-2 text-xs sm:text-sm">Film: Raunvijay Paul</p>
           </div>
