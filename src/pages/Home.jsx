@@ -248,6 +248,7 @@ const Home = () => {
       {/* Footer */}
       <footer className="w-full py-6 sm:py-8 px-4 sm:px-6 mt-6">
         <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+          {/* Left */}
           <div className="flex flex-col sm:flex-row items-center">
             <a href="/">
               <span className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
@@ -258,6 +259,17 @@ const Home = () => {
               Copyright &copy;
             </span>
           </div>
+
+          <a
+            href="https://www.justcharge.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-sm sm:text-base lg:mr-[150px]"
+          >
+            Crafted with ❤️ <span className="underline">Just Charge</span>
+          </a>
+
+          {/* Right */}
           <a
             href="/getintouch"
             className="text-lg sm:text-xl font-extrabold underline underline-offset-4"
@@ -266,6 +278,7 @@ const Home = () => {
           </a>
         </div>
       </footer>
+
     </div>
   );
 };
