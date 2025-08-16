@@ -133,23 +133,23 @@ const ModelDetails = () => {
           <div className="grid grid-cols-3 gap-y-6 mb-6 text-left">
             <div>
               <div className="font-bold uppercase text-sm mb-1">Height</div>
-              <div>{model.height}</div>
+              <div className="font-semibold">{model.height}</div>
             </div>
             <div>
               <div className="font-bold uppercase text-sm mb-1">Waist</div>
-              <div>{model.waist}</div>
+              <div className="font-semibold">{model.waist}</div>
             </div>
             <div>
               <div className="font-bold uppercase text-sm mb-1">Shoes</div>
-              <div>{model.shoes}</div>
+              <div className="font-semibold">{model.shoes}</div>
             </div>
             <div>
               <div className="font-bold uppercase text-sm mb-1">Bust</div>
-              <div>{model.bust}</div>
+              <div className="font-semibold">{model.bust}</div>
             </div>
             <div>
               <div className="font-bold uppercase text-sm mb-1">Hips</div>
-              <div>{model.hips}</div>
+              <div className="font-semibold">{model.hips}</div>
             </div>
           </div>
 
@@ -227,30 +227,30 @@ const ModelDetails = () => {
                 : { position: "sticky", top: "200px", alignSelf: "flex-start" }
             }
           >
-            <h1 className="text-4xl font-extrabold mb-10 mt-0">
+            <h1 className="text-5xl font-extrabold mb-10 mt-0">
               {model.name} <br /> ({model.location})
             </h1>
             <div className="mb-10">
               <div className="grid grid-cols-3 gap-y-6 mb-6 text-left">
                 <div>
-                  <div className="font-bold uppercase text-sm mb-1">Height</div>
-                  <div>{model.height}</div>
+                  <div className="font-bold uppercase text-base mb-1">Height</div>
+                  <div className="font-semibold">{model.height}</div>
                 </div>
                 <div>
-                  <div className="font-bold uppercase text-sm mb-1">Waist</div>
-                  <div>{model.waist}</div>
+                  <div className="font-bold uppercase text-base mb-1">Waist</div>
+                  <div className="font-semibold">{model.waist}</div>
                 </div>
                 <div>
-                  <div className="font-bold uppercase text-sm mb-1">Shoes</div>
-                  <div>{model.shoes}</div>
+                  <div className="font-bold uppercase text-base mb-1">Shoes</div>
+                  <div className="font-semibold">{model.shoes}</div>
                 </div>
                 <div>
-                  <div className="font-bold uppercase text-sm mb-1">Bust</div>
-                  <div>{model.bust}</div>
+                  <div className="font-bold uppercase text-base mb-1">Bust</div>
+                  <div className="font-semibold">{model.bust}</div>
                 </div>
                 <div>
-                  <div className="font-bold uppercase text-sm mb-1">Hips</div>
-                  <div>{model.hips}</div>
+                  <div className="font-bold uppercase text-base mb-1">Hips</div>
+                  <div className="font-semibold">{model.hips}</div>
                 </div>
               </div>
             </div>
