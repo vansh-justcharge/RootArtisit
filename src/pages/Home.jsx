@@ -1,8 +1,31 @@
 // pages/Home.jsx
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const timeoutRef = useRef(null);
+
+  // Handle desktop hover for both button and dropdown menu
+  const handleMouseEnter = () => {
+    if (window.innerWidth > 768) {
+      clearTimeout(timeoutRef.current);
+      setIsDropdownOpen(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (window.innerWidth > 768) {
+      timeoutRef.current = setTimeout(() => setIsDropdownOpen(false), 100);
+    }
+  };
+
+  // Toggle dropdown for mobile/touch
+  const handleButtonClick = (e) => {
+    e.stopPropagation();
+    setIsDropdownOpen((prev) => !prev);
+  };
+
   return (
     <div className="w-full px-4 sm:px-6">
       {/* Fixed Header */}
@@ -11,13 +34,67 @@ const Home = () => {
           <h1 className="text-[48px] sm:text-[80px] md:text-[120px] lg:text-[200px] font-extrabold tracking-tight leading-none">
             ROOTARTISTS
           </h1>
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center mt-2 sm:mt-4">
+          <nav
+            className="grid grid-cols-4 gap-2 sm:gap-4 text-center mt-2 sm:mt-4"
+            role="navigation"
+          >
             <Link
               to="/about"
               className="font-bold text-xs sm:text-sm md:text-base cursor-pointer hover:text-gray-500"
             >
               ABOUT US
             </Link>
+
+            {/* Artists Dropdown - FIXED */}
+            <div
+              className="relative"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                onClick={handleButtonClick}
+                className="font-bold text-xs sm:text-sm md:text-base cursor-pointer hover:text-gray-500"
+                aria-haspopup="true"
+                aria-expanded={isDropdownOpen}
+                aria-label="Artists menu"
+                type="button"
+              >
+                ARTISTS
+              </button>
+              {isDropdownOpen && (
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 z-50"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <Link
+                    to="/artists/photographer"
+                    className="block px-4 py-2 text-sm hover:bg-gray-100 text-left"
+                  >
+                    Photographer
+                  </Link>
+                  <Link
+                    to="/artists/makeup"
+                    className="block px-4 py-2 text-sm hover:bg-gray-100 text-left"
+                  >
+                    Hair &amp; Make up
+                  </Link>
+                  <Link
+                    to="/artists/creative"
+                    className="block px-4 py-2 text-sm hover:bg-gray-100 text-left"
+                  >
+                    Creative director &amp; Styling
+                  </Link>
+                  <Link
+                    to="/artists/film"
+                    className="block px-4 py-2 text-sm hover:bg-gray-100 text-left"
+                  >
+                    Film / Video
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link
               to="/models"
               className="font-bold text-xs sm:text-sm md:text-base cursor-pointer hover:text-gray-500"
@@ -30,24 +107,22 @@ const Home = () => {
             >
               GET SCOUTED
             </Link>
-          </div>
+          </nav>
         </div>
       </header>
 
       {/* Content pushed below fixed header */}
       <main className="pt-[160px] sm:pt-[200px] md:pt-[280px] space-y-10 sm:space-y-12 md:space-y-16">
-        
-        {/* Row 1 */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-11 gap-4 items-end">
+        {/* === ROW 1 === */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-11 gap-4">
           <div className="lg:col-span-3">
             <img
               src="https://rootartists.com/wp-content/uploads/2024/05/1-2.jpg"
               alt="Caption 1"
               className="w-full h-[260px] sm:h-[300px] md:h-[500px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Caption 1</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 1</p>
           </div>
-
           <div className="lg:col-span-2">
             <video
               src="https://rootartists.com/wp-content/uploads/2024/05/Reel-2.mp4"
@@ -55,31 +130,30 @@ const Home = () => {
               muted
               loop
               playsInline
+              aria-label="Caption 2 video"
               className="w-full h-[300px] sm:h-[300px] md:h-[500px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Caption 2</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 2</p>
           </div>
-
-          <div className="lg:col-span-3 items-end">
+          <div className="lg:col-span-3">
             <img
               src="https://rootartists.com/wp-content/uploads/2024/12/Pulkit-Mishra-91-scaled.jpg"
               alt="Caption 3"
               className="w-full h-[300px] sm:h-[300px] md:h-[500px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Caption 3</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 3</p>
           </div>
-
-          <div className="lg:col-span-3 items-end">
+          <div className="lg:col-span-3">
             <img
               src="https://rootartists.com/wp-content/uploads/2024/12/%C2%A9Pulkit-Mishra_Mindyc-scaled.jpg"
               alt="Caption 4"
               className="w-full h-[250px] sm:h-[300px] md:h-[500px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Caption 4</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 4</p>
           </div>
         </div>
 
-        {/* Row 2 */}
+        {/* === ROW 2 === */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
             <img
@@ -87,7 +161,7 @@ const Home = () => {
               alt="Caption 1"
               className="w-full h-[250px] sm:h-[400px] md:h-[500px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Caption 1</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 1</p>
           </div>
           <div>
             <img
@@ -95,39 +169,38 @@ const Home = () => {
               alt="Caption 2"
               className="w-full h-[250px] sm:h-[400px] md:h-[500px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Caption 2</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 2</p>
           </div>
         </div>
 
-        {/* Row 3 */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-12 gap-4 items-end">
+        {/* === ROW 3 === */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-12 gap-4">
           <div className="lg:col-span-2">
             <img
               src="https://rootartists.com/wp-content/uploads/2023/12/3-2.png"
               alt="Photographer: Runvijay Paul"
               className="w-full h-[200px] sm:h-[250px] lg:h-[300px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Photographer: Runvijay Paul</p>
+            <p className="mt-2 text-xs sm:text-sm">Photographer: Runvijay Paul</p>
           </div>
-
           <div className="lg:col-span-3">
             <img
               src="https://rootartists.com/wp-content/uploads/2023/12/c6ce38159442717.png"
               alt="Creative direction : Akshay Pradeep"
               className="w-full h-[150px] sm:h-[250px] lg:h-[300px] object-cover"
             />
-            <p className="mt-2 text-xs text-start sm:text-sm">Creative direction : Akshay Pradeep</p>
+            <p className="mt-2 text-xs sm:text-sm">
+              Creative direction : Akshay Pradeep
+            </p>
           </div>
-
           <div className="lg:col-span-2">
             <img
               src="https://rootartists.com/wp-content/uploads/2023/12/13.png"
               alt="Photographer: Runvijay Paul"
               className="w-full h-[200px] sm:h-[250px] lg:h-[300px] object-cover"
             />
-            <p className="mt-2 text-xs text-start sm:text-sm">Photographer: Runvijay Paul</p>
+            <p className="mt-2 text-xs sm:text-sm">Photographer: Runvijay Paul</p>
           </div>
-
           <div className="lg:col-span-5">
             <div className="w-full h-[200px] sm:h-[250px] lg:h-[300px] overflow-hidden">
               <iframe
@@ -143,9 +216,9 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Row 4 */}
+        {/* === ROW 4 === */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:h-[350px] md:h-[450px]">
-          <div className="sm:col-span-1 flex items-end">
+          <div className="sm:col-span-1">
             <img
               src="https://rootartists.com/wp-content/uploads/2024/12/%C2%A9Pulkit-Mishra_Portfolio-4-2048x1639.jpg"
               alt="Caption 1"
@@ -168,7 +241,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Row 5 */}
+        {/* === ROW 5 === */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
           <div>
             <img
@@ -176,7 +249,7 @@ const Home = () => {
               alt="Caption 1"
               className="w-full h-[400px] sm:h-[400px] md:h-[500px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start ml-6">Caption 1</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 1</p>
           </div>
           <div className="sm:col-span-2">
             <img
@@ -184,19 +257,19 @@ const Home = () => {
               alt="Caption 2"
               className="w-full h-[250px] sm:h-[400px] md:h-[500px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Caption 2</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 2</p>
           </div>
         </div>
 
-        {/* Row 6 */}
+        {/* === ROW 6 === */}
         <div className="grid grid-cols-1 sm:grid-cols-5 gap-4 sm:gap-6">
           <div className="sm:col-span-2">
             <img
               src="https://rootartists.com/wp-content/uploads/2023/12/CARPE-DIEM-1-1.png"
-              alt="Caption 2"
+              alt="Caption 1"
               className="w-full h-[250px] sm:h-[400px] md:h-[450px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start ml-4">Caption 2</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 1</p>
           </div>
           <div>
             <img
@@ -204,19 +277,19 @@ const Home = () => {
               alt="Caption 2"
               className="w-full h-[400px] sm:h-[400px] md:h-[450px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Caption 2</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 2</p>
           </div>
           <div className="sm:col-span-2">
             <img
               src="https://rootartists.com/wp-content/uploads/2024/05/ECKO_AW_CAMPAIGN_048-copy-1-1.jpg"
-              alt="Caption 2"
+              alt="Caption 3"
               className="w-full h-[250px] sm:h-[400px] md:h-[450px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Caption 2</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 3</p>
           </div>
         </div>
 
-        {/* Row 7 */}
+        {/* === ROW 7 === */}
         <div className="grid grid-cols-1 sm:grid-cols-10 gap-4 sm:gap-6">
           <div className="sm:col-span-5">
             <img
@@ -224,15 +297,15 @@ const Home = () => {
               alt="Caption 1"
               className="w-full h-[250px] sm:h-[350px] md:h-[400px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start ml-4">Caption 1</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 1</p>
           </div>
           <div className="sm:col-span-2">
             <img
               src="https://rootartists.com/wp-content/uploads/2024/12/DSF5416_%C2%A9Pulkit-Mishra_-scaled.jpg"
-              alt="Caption 3"
+              alt="Caption 2"
               className="w-full h-[400px] sm:h-[350px] md:h-[400px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Caption 3</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 2</p>
           </div>
           <div className="sm:col-span-3">
             <img
@@ -240,7 +313,7 @@ const Home = () => {
               alt="Caption 3"
               className="w-full h-[400px] sm:h-[400px] md:h-[500px] object-cover"
             />
-            <p className="mt-2 text-xs sm:text-sm text-start">Caption 3</p>
+            <p className="mt-2 text-xs sm:text-sm">Caption 3</p>
           </div>
         </div>
       </main>
@@ -256,10 +329,9 @@ const Home = () => {
               </span>
             </a>
             <span className="mt-2 sm:mt-0 sm:ml-4 text-sm sm:text-base">
-              Copyright &copy;
+              © {new Date().getFullYear()}
             </span>
           </div>
-
           <a
             href="https://www.justcharge.in/"
             target="_blank"
@@ -268,7 +340,6 @@ const Home = () => {
           >
             Crafted with ❤️ <span className="underline">Just Charge</span>
           </a>
-
           {/* Right */}
           <a
             href="/getintouch"
@@ -278,7 +349,6 @@ const Home = () => {
           </a>
         </div>
       </footer>
-
     </div>
   );
 };

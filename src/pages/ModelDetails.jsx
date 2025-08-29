@@ -54,58 +54,64 @@ const ModelDetails = () => {
     );
   } else if (view === "polaroids") {
     const polaroids = model.polaroidImages || [];
-    rightContent = (
-      <div className="grid grid-cols-2 gap-6">
-        {polaroids.slice(0, 4).map((imgUrl, idx) => (
-          <div
-            key={idx}
-            className="relative w-full bg-gray-100 flex items-center justify-center"
-          >
-            <img
-              src={imgUrl}
-              alt={`Polaroid ${idx + 1}`}
-              className="object-cover w-full h-full cursor-pointer"
-              onClick={() => openModal(polaroids, idx)}
-            />
-            {idx === 3 && polaroids.length > 4 && (
-              <div
-                className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-lg font-bold cursor-pointer"
-                onClick={() => openModal(polaroids, 3)}
-              >
-                +{polaroids.length - 4} more
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-    );
+    rightContent =
+      polaroids.length > 0 ? (
+        <div className="grid grid-cols-2 gap-6">
+          {polaroids.slice(0, 4).map((imgUrl, idx) => (
+            <div
+              key={idx}
+              className="relative w-full bg-gray-100 flex items-center justify-center"
+            >
+              <img
+                src={imgUrl}
+                alt={`Polaroid ${idx + 1}`}
+                className="object-cover w-full h-full cursor-pointer"
+                onClick={() => openModal(polaroids, idx)}
+              />
+              {idx === 3 && polaroids.length > 4 && (
+                <div
+                  className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-lg font-bold cursor-pointer"
+                  onClick={() => openModal(polaroids, 3)}
+                >
+                  +{polaroids.length - 4} more
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-500">No gallery images</p>
+      );
   } else if (view === "portfolio") {
     const portfolio = model.portfolioImages || [];
-    rightContent = (
-      <div className="grid grid-cols-2 gap-6">
-        {portfolio.slice(0, 4).map((imgUrl, idx) => (
-          <div
-            key={idx}
-            className="relative w-full bg-gray-100 flex items-center justify-center"
-          >
-            <img
-              src={imgUrl}
-              alt={`Portfolio ${idx + 1}`}
-              className="object-cover w-full h-full cursor-pointer"
-              onClick={() => openModal(portfolio, idx)}
-            />
-            {idx === 3 && portfolio.length > 4 && (
-              <div
-                className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-lg font-bold cursor-pointer"
-                onClick={() => openModal(portfolio, 3)}
-              >
-                +{portfolio.length - 4} more
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-    );
+    rightContent =
+      portfolio.length > 0 ? (
+        <div className="grid grid-cols-2 gap-6">
+          {portfolio.slice(0, 4).map((imgUrl, idx) => (
+            <div
+              key={idx}
+              className="relative w-full bg-gray-100 flex items-center justify-center"
+            >
+              <img
+                src={imgUrl}
+                alt={`Portfolio ${idx + 1}`}
+                className="object-cover w-full h-full cursor-pointer"
+                onClick={() => openModal(portfolio, idx)}
+              />
+              {idx === 3 && portfolio.length > 4 && (
+                <div
+                  className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-lg font-bold cursor-pointer"
+                  onClick={() => openModal(portfolio, 3)}
+                >
+                  +{portfolio.length - 4} more
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-500">No gallery images</p>
+      );
   }
 
   return (
@@ -115,7 +121,7 @@ const ModelDetails = () => {
         {/* MOBILE VIEW */}
         <div className="block md:hidden space-y-8">
           {/* Name */}
-          <h1 className="text-3xl font-extrabold">
+          <h1 className="text-3xl font-extrabold uppercase">
             {model.name} <br /> ({model.location})
           </h1>
 
@@ -156,49 +162,65 @@ const ModelDetails = () => {
           {/* Polaroids */}
           <div>
             <h2 className="font-bold uppercase mb-4">Polaroids</h2>
-            <div className="grid grid-cols-2 gap-4">
-              {model.polaroidImages.slice(0, 4).map((imgUrl, idx) => (
-                <div
-                  key={idx}
-                  className="relative w-full bg-gray-100 cursor-pointer"
-                  onClick={() => openModal(model.polaroidImages, idx)}
-                >
-                  <img src={imgUrl} alt={`Polaroid ${idx + 1}`} className="object-cover w-full" />
-                  {idx === 3 && model.polaroidImages.length > 4 && (
-                    <div
-                      className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white font-bold text-lg"
-                      onClick={() => openModal(model.polaroidImages, 3)}
-                    >
-                      +{model.polaroidImages.length - 4} more
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            {model.polaroidImages && model.polaroidImages.length > 0 ? (
+              <div className="grid grid-cols-2 gap-4">
+                {model.polaroidImages.slice(0, 4).map((imgUrl, idx) => (
+                  <div
+                    key={idx}
+                    className="relative w-full bg-gray-100 cursor-pointer"
+                    onClick={() => openModal(model.polaroidImages, idx)}
+                  >
+                    <img
+                      src={imgUrl}
+                      alt={`Polaroid ${idx + 1}`}
+                      className="object-cover w-full"
+                    />
+                    {idx === 3 && model.polaroidImages.length > 4 && (
+                      <div
+                        className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white font-bold text-lg"
+                        onClick={() => openModal(model.polaroidImages, 3)}
+                      >
+                        +{model.polaroidImages.length - 4} more
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-500">No gallery Found</p>
+            )}
           </div>
 
           {/* Portfolio */}
           <div>
             <h2 className="font-bold uppercase mb-4">Portfolio</h2>
-            <div className="grid grid-cols-2 gap-4">
-              {model.portfolioImages.slice(0, 4).map((imgUrl, idx) => (
-                <div
-                  key={idx}
-                  className="relative w-full bg-gray-100 cursor-pointer"
-                  onClick={() => openModal(model.portfolioImages, idx)}
-                >
-                  <img src={imgUrl} alt={`Portfolio ${idx + 1}`} className="object-cover w-full" />
-                  {idx === 3 && model.portfolioImages.length > 4 && (
-                    <div
-                      className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white font-bold text-lg"
-                      onClick={() => openModal(model.portfolioImages, 3)}
-                    >
-                      +{model.portfolioImages.length - 4} more
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            {model.portfolioImages && model.portfolioImages.length > 0 ? (
+              <div className="grid grid-cols-2 gap-4">
+                {model.portfolioImages.slice(0, 4).map((imgUrl, idx) => (
+                  <div
+                    key={idx}
+                    className="relative w-full bg-gray-100 cursor-pointer"
+                    onClick={() => openModal(model.portfolioImages, idx)}
+                  >
+                    <img
+                      src={imgUrl}
+                      alt={`Portfolio ${idx + 1}`}
+                      className="object-cover w-full"
+                    />
+                    {idx === 3 && model.portfolioImages.length > 4 && (
+                      <div
+                        className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white font-bold text-lg"
+                        onClick={() => openModal(model.portfolioImages, 3)}
+                      >
+                        +{model.portfolioImages.length - 4} more
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-500">No gallery Found</p>
+            )}
           </div>
 
           {/* Instagram */}
@@ -227,29 +249,39 @@ const ModelDetails = () => {
                 : { position: "sticky", top: "200px", alignSelf: "flex-start" }
             }
           >
-            <h1 className="text-5xl font-extrabold mb-10 mt-0">
+            <h1 className="text-5xl font-extrabold mb-10 mt-0 uppercase">
               {model.name} <br /> ({model.location})
             </h1>
             <div className="mb-10">
               <div className="grid grid-cols-3 gap-y-6 mb-6 text-left">
                 <div>
-                  <div className="font-bold uppercase text-base mb-1">Height</div>
+                  <div className="font-bold uppercase text-base mb-1">
+                    Height
+                  </div>
                   <div className="font-semibold">{model.height}</div>
                 </div>
                 <div>
-                  <div className="font-bold uppercase text-base mb-1">Waist</div>
+                  <div className="font-bold uppercase text-base mb-1">
+                    Waist
+                  </div>
                   <div className="font-semibold">{model.waist}</div>
                 </div>
                 <div>
-                  <div className="font-bold uppercase text-base mb-1">Shoes</div>
+                  <div className="font-bold uppercase text-base mb-1">
+                    Shoes
+                  </div>
                   <div className="font-semibold">{model.shoes}</div>
                 </div>
                 <div>
-                  <div className="font-bold uppercase text-base mb-1">Bust</div>
+                  <div className="font-bold uppercase text-base mb-1">
+                    Bust
+                  </div>
                   <div className="font-semibold">{model.bust}</div>
                 </div>
                 <div>
-                  <div className="font-bold uppercase text-base mb-1">Hips</div>
+                  <div className="font-bold uppercase text-base mb-1">
+                    Hips
+                  </div>
                   <div className="font-semibold">{model.hips}</div>
                 </div>
               </div>
@@ -302,10 +334,7 @@ const ModelDetails = () => {
           >
             <X size={32} />
           </button>
-          <button
-            className="absolute left-4 text-white"
-            onClick={prevImage}
-          >
+          <button className="absolute left-4 text-white" onClick={prevImage}>
             <ChevronLeft size={40} />
           </button>
           <img
@@ -313,10 +342,7 @@ const ModelDetails = () => {
             alt="Enlarged"
             className="max-h-[90%] max-w-[90%] object-contain"
           />
-          <button
-            className="absolute right-4 text-white"
-            onClick={nextImage}
-          >
+          <button className="absolute right-4 text-white" onClick={nextImage}>
             <ChevronRight size={40} />
           </button>
         </div>

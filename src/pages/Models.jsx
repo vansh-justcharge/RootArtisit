@@ -61,7 +61,7 @@ const Models = () => {
                 </div>
 
                 {/* Name + Location (outside hover) */}
-                <span className="font-bold text-sm md:text-base mb-1 mt-2 md:mb-2">
+                <span className="font-bold text-sm md:text-base mb-1 mt-2 md:mb-2 uppercase">
                   {model.name} ({model.location})
                 </span>
               </Link>
